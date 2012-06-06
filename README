@@ -108,6 +108,10 @@ Libjingle needs to be downloaded and patched
     is set correctly.
   * Second, run talk/third_party/expat-2.0.1/configure and
     talk/third_party/srtp/configure.
+    On OS X, You may need to use: CFLAGS="--sysroot=/Developer/SDKs/MacOSX10.7.sdk \
+        -mmacosx-version-min=10.5 -arch i386" \
+        LDFLAGS="--sysroot=/Developer/SDKs/MacOSX10.7.sdk -arch i386 -lgcc" \
+        ./configure
   * Third, go to the talk/ directory and run $path_to_swtoolkit/hammer.sh. Run
     $path_to_swtoolkit/hammer.sh --help for information on how to build for
     different modes.

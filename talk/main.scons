@@ -420,12 +420,12 @@ def mac_common_include_x86_32(env):
   env.Append(
     CCFLAGS = [
       '-m32',
-      '-isysroot', '/Developer/SDKs/MacOSX10.5.sdk',
+      '-isysroot', '/Developer/SDKs/MacOSX10.7.sdk',
     ],
     LINKFLAGS = [
       '-m32',
       '-mmacosx-version-min=10.5',
-      '-isysroot', '/Developer/SDKs/MacOSX10.5.sdk',
+      '-isysroot', '/Developer/SDKs/MacOSX10.7.sdk',
     ],
   )
   envs.append(env)
@@ -435,12 +435,12 @@ def mac_common_include_x86_64(env):
     CCFLAGS = [
       '-m64',
       '-fPIC',
-      '-isysroot', '/Developer/SDKs/MacOSX10.6.sdk',
+      '-isysroot', '/Developer/SDKs/MacOSX10.7.sdk',
     ],
     LINKFLAGS = [
       '-m64',
       '-mmacosx-version-min=10.6',
-      '-isysroot', '/Developer/SDKs/MacOSX10.6.sdk',
+      '-isysroot', '/Developer/SDKs/MacOSX10.7.sdk',
     ],
     CPPDEFINES = [
       'ARCH_CPU_64_BITS',
@@ -448,6 +448,14 @@ def mac_common_include_x86_64(env):
   )
   env.SetBits('host_platform_64bit')
   envs.append(env)
+
+# Remove default rpath set by Hammer. Hammer sets it to LIB_DIR, which is wrong.
+# The rpath is the _run-time_ library search path for the resulting binary, i.e.
+# the one used by ld.so at load time. Setting it equal to the path to build
+# output on the build machine is nonsense.
+mac_env.Replace(
+  RPATH = [],
+)
 
 # Create all environments
 mac_dbg_env = mac_env.Clone(
