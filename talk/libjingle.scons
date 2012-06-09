@@ -446,6 +446,30 @@ talk.App(env, name = "call",
            "xmpphelp",
          ],
 )
+talk.App(env, name = "pcp",
+         libs = [
+           "jingle",
+           "expat",
+           "xmpphelp",
+           "gunit",
+         ],
+         posix_libs = [
+           "crypto",
+           "ssl",
+         ],
+         srcs = [
+           "examples/pcp/pcp_main.cc",
+         ],
+         cppdefines = [
+            "GTEST_RELATIVE_PATH",
+         ],
+         includedirs = [
+           "third_party/gtest/include",
+           "third_party/expat-2.0.1/lib",
+           "third_party/srtp",
+           "third_party/gtest",
+         ],
+)
 talk.App(env, name = "relayserver",
          libs = [
            "jingle",

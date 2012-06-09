@@ -10,7 +10,7 @@
 #include "config.h"
 #endif  // HAVE_CONFIG_H
 
-#if HAVE_OPENSSL_SSL_H
+#if false && HAVE_OPENSSL_SSL_H
 #define USE_SSL_TUNNEL
 #endif
 
