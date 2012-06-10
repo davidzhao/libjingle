@@ -172,8 +172,9 @@ talk_base::StreamInterface* TunnelSessionClientBase::AcceptTunnel(
   if (answer == NULL)
     return NULL;
 
+  talk_base::StreamInterface * stream = tunnel->GetStream();
   session->Accept(answer);
-  return tunnel->GetStream();
+  return stream;
 }
 
 void TunnelSessionClientBase::DeclineTunnel(Session* session) {
